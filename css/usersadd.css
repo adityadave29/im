@@ -251,11 +251,17 @@ div .orderProductRow {
   border-coLor: #556455;
 }
 
-.po-badge-arrived {
+.po-badge-complete {
   background: #b5ebb5;
   border-color: green;
 }
 
-.alignLeft{
+.po-badge-incomplete {
+  background: #f7e640;
+  color: #392b2b;
+  border-coLor: #a3a3a3; 
+}
+
+.alignLeft {
   text-align: left;
 }

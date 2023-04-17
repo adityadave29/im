@@ -218,6 +218,7 @@ $suppliers = include 'database/show.php';
                                         <td>\
                                             <select class="po_qty_status">\
                                                 <option value="pending" '+(poList.status == 'pending' ? 'selected' : '') + '>pending</option>\
+                                                <option value="incomplete" '+(poList.status == 'incomplete' ? 'selected' : '') + '>incomplete</option>\
                                                 <option value="complete" '+(poList.status == 'complete' ? 'selected' : '') + '>complete</option>\
                                             </select>\
                                             <input type="hidden" class="po_qty_row_id" value="'+poList.id+'">\
@@ -249,9 +250,10 @@ $suppliers = include 'database/show.php';
 
                                         formTableContainer = 'formTable_'+batchNumber;
 
-                                        qtyReceivedList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_received');
+                                        qtyReceivedList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_received input');
                                         statusList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_status');
                                         rowIds = document.querySelectorAll('#' + formTableContainer + ' .po_qty_row_id');
+                                        qtyOrdered = document.querySelectorAll('#' + formTableContainer + ' .po_qty_ordered');
                                         
 
                                         // console.log(qtyReceivedList,statusList,rowIds);
@@ -262,21 +264,21 @@ $suppliers = include 'database/show.php';
                                             poListsArrForm.push({
                                                 qtyReceived: qtyReceivedList[i].value,
                                                 status: statusList[i].value,
-                                                id: rowIds[i].value
+                                                id: rowIds[i].value,
+                                                qtyOrdered: qtyOrdered[i].innerText
                                             });
                                         }   
-                                        console.log(poListsArrForm);
-                                        return;
+                                        // console.log(poListsArrForm);
+                                        // return;
                                         $.ajax({
                                             method: 'POST',
                                             data:{
-                                                id:pId,
-                                                table:'products'
+                                                payload : poListsArrForm
                                             },
-                                            url: 'database/delete.php',
+                                            url: 'database/updateorder.php',
                                             dataType: 'json',
                                             success: function(data){
-                                                message = data.success ? 'sd' : 'Ed';
+                                                message = data.message;
 
                                                 BootstrapDialog.alert({
                                                     type: data.success? BootstrapDialog.TYPE_SUCCESS : BootstrapDialog.TYPE_DANGER,
