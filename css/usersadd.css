@@ -255,3 +255,7 @@ div .orderProductRow {
   background: #b5ebb5;
   border-color: green;
 }
+
+.alignLeft{
+  text-align: left;
+}

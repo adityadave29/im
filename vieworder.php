@@ -177,59 +177,89 @@ $suppliers = include 'database/show.php';
                                     status: statusList[i].innerText,
                                 });
                             }   
-                            
-                            console.log(poListsArr);
-                            return;
+
+                            // productList.forEach((product,key) => {
+                            //     poListsArr[key]['product'] = product.innerText;
+                            //     // console.log(key);
+                            // });
+
+                            var poListHtml = '<table>\
+                                                <thead>\
+                                                    <tr>\
+                                                        <th>Product Name</th>\
+                                                        <th>Qty Ordered</th>\
+                                                        <th>Qty Received</th>\
+                                                        <th>Supplier</th>\
+                                                        <th>Status</th>\
+                                                    </tr>\
+                                                </thead>\
+                                            <tbody>';
 
 
-                            productList.forEach((product,key) => {
-                                // poListsArr[key]['product'] = product.innerText;
-                                console.log(key);
+                            poListsArr.forEach((poList) => {
+                                poListHtml += '\
+                                <tr>\
+                                    <td class="po_product alignLeft">'+ poList.name+ '</td>\
+                                    <td class="po_qty_ordered">'+ poList.qtyOrdered+ '</td>\
+                                    <td class="po_qty_ordered"><input type="number" value="'+ poList.qtyReceived+ '"/></td>\
+                                    <td class="po_qty_supplier">'+ poList.supplier+ '</td>\
+                                    <td>\
+                                         <select>\
+                                            <option value="pending" '+(poList.status == 'pending' ? 'selected' : '') + '>pending</option>\
+                                            <option value="complete" '+(poList.status == 'complete' ? 'selected' : '') + '>complete</option>\
+                                         </select>\
+                                        <input type="hidden" class="po_qty_row_id" value="<?= $batch_po['id'] ?>">\
+                                    </td>\
+                                </tr>';
+
+                                
                             });
 
+                            poListHtml+='</tbody></table>';
 
-                            return;
+                            console.log(poListHtml);
+    
+                            // console.log(poListHtml);
+                            // alert('hi');
+                            // return;
+                            // return;
+                            // return;
+                            // pName = targetElement.dataset.name;
 
-                            pId = targetElement.dataset.pid;
-                            pName = targetElement.dataset.name;
-
-                            // console.log(pId, pName);
-                            // return false;
                             // console.log(userId);
-                            if (window.confirm('Are you sure you want to delete')) {
-                                // console.log('will delete');  
-                                // alert('hi');
-                                $.ajax({
-                                    method: 'POST',
-                                    data: {
-                                        id: pId,
-                                        table: 'products'
-                                    },
-                                    url: './database/delete.php',
-                                    dataType: 'json',
-                                    success: function(data) {
-                                        if (data.success) {
-                                            if (window.confirm(data.message)) {
-                                                location.reload();
-                                            }
-                                        } else {
-                                            window.alert(data.message);
-                                        }
-                                    }
-                                })
-                            } else {
-                                console.log('will not delete');
-                            }
+                            
+                            BootstrapDialog.confirm({
+                                type: BootstrapDialog.TYPE_PRIMARY,
+                                title: 'Update',
+                                message: poListHtml
+                                // callback: function(isDelete){
+                                //     is(isDelete){
+                                //         $.ajax({
+                                //             method: 'POST',
+                                //             data:{
+                                //                 id:pId,
+                                //                 table:'products'
+                                //             },
+                                //             url: './database/delete.php',
+                                //             dataType: 'json',
+                                //             success: function(data){
+                                //                 message = data.success ? 'sd' : 'Ed';
+
+                                //                 BootstrapDialog.alert({
+                                //                     type: data.success? BootstrapDialog.TYPE_SUCCESS : BootstrapDialog.TYPE_DANGER,
+                                //                     message : message,
+                                //                     callback: function(){
+                                //                         if(data.success) location.reload();
+                                //                     }
+                                //                 });
+                                //             }
+                                //         });
+                                //     }
+                                // }
+                            });
+                            
                         }
 
-                        if (classList.contains('updateproduct')) {
-                            e.preventDefault();
-
-                            pId = targetElement.dataset.pid;
-
-                            vm.showEditDialog(pId);
-
-                        }
                     });
             },
 
