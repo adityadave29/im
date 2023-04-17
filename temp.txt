@@ -149,22 +149,21 @@ $suppliers = include 'database/show.php';
                 document.addEventListener('click', function(e) {
                         targetElement = e.target;
                         classList = targetElement.classList;
-                        // console.log(classList);
+
                         if (classList.contains('updatePoBtn')) {
                             e.preventDefault();
 
+                            
                             batchNumber = targetElement.dataset.id;
                             batchNumberContainer =  'container-'+ batchNumber;
-                            
-                            // console.log(batchNumberContainer);
+
                             
                             productList = document.querySelectorAll('#' + batchNumberContainer + ' .po_product');
                             qtyOrderedList = document.querySelectorAll('#' + batchNumberContainer + ' .po_qty_ordered');
-                            qtyReceivedList = document.querySelectorAll('#' + batchNumberContainer + ' .po_qty_received');
+                            qtyReceivedList = document.querySelectorAll('#' + batchNumberContainer + '.po_qty_received');
                             supplierList = document.querySelectorAll('#' + batchNumberContainer + ' .po_qty_supplier');
                             statusList = document.querySelectorAll('#' + batchNumberContainer + ' .po_qty_status');
                             rowIds = document.querySelectorAll('#' + batchNumberContainer + ' .po_qty_row_id');
-                            
 
                             // console.log(productList,qtyOrderedList,qtyReceivedList,supplierList,statusList);
 
@@ -181,23 +180,9 @@ $suppliers = include 'database/show.php';
                                 });
                             }   
 
-                            // productList.forEach((product,key) => {
-                            //     poListsArr[key]['product'] = product.innerText;
-                            //     // console.log(key);
-                            // });
-
-                            // poListsArr.forEach((poList) => {
-                            //     console.log(poList);
-                            // });
-
-                            // return;
-
-                            // console.log(poListsArr);
-                            // return;
-
-                            var poListHtml = '<table id="formTable_'+batchNumber+'">\
+                            var poListHtml = '<table id="formTable_'+ batchNumber +'">\
                                                 <thead>\
-                                                    <tr>\
+                                                    <tr>\ 
                                                         <th>Product Name</th>\
                                                         <th>Qty Ordered</th>\
                                                         <th>Qty Received</th>\
@@ -210,19 +195,19 @@ $suppliers = include 'database/show.php';
 
                             poListsArr.forEach((poList) => {
                                 poListHtml += '\
-                                    <tr>\
-                                        <td class="po_product alignLeft">'+ poList.name+ '</td>\
-                                        <td class="po_qty_ordered">'+ poList.qtyOrdered+ '</td>\
-                                        <td class="po_qty_received"><input type="number" value="'+ poList.qtyReceived+ '"/></td>\
-                                        <td class="po_qty_supplier">'+ poList.supplier+ '</td>\
-                                        <td>\
-                                            <select class="po_qty_status">\
-                                                <option value="pending" '+(poList.status == 'pending' ? 'selected' : '') + '>pending</option>\
-                                                <option value="complete" '+(poList.status == 'complete' ? 'selected' : '') + '>complete</option>\
-                                            </select>\
-                                            <input type="hidden" class="po_qty_row_id" value="'+poList.id+'">\
-                                        </td>\
-                                    </tr>';
+                                <tr>\
+                                    <td class="po_product alignLeft">'+ poList.name+ '</td>\
+                                    <td class="po_qty_ordered">'+ poList.qtyOrdered+ '</td>\
+                                    <td class="po_qty_ordered"><input type="number" value="' + poList.qtyReceived + '"/></td>\
+                                    <td class="po_qty_supplier">'+ poList.supplier+ '</td>\
+                                    <td>\
+                                         <select class="po_qty_status">\
+                                            <option value="pending" '+(poList.status == 'pending' ? 'selected' : '') + '>pending</option>\
+                                            <option value="complete" '+(poList.status == 'complete' ? 'selected' : '') + '>complete</option>\
+                                         </select>\
+                                        <input type="hidden" class="po_qty_row_id" value="'+ poList.id +'">\
+                                    </td>\
+                                </tr>';
 
                                 
                             });
@@ -230,66 +215,66 @@ $suppliers = include 'database/show.php';
                             poListHtml+='</tbody></table>';
 
                             console.log(poListHtml);
-    
-                            // console.log(poListHtml);
-                            // alert('hi');
-                            // return;
-                            // return;
-                            // return;
-                            pName = targetElement.dataset.name;
+
+                            // pName = targetElement.dataset.name;
 
                             // console.log(userId);
+                            // console.log(poListHtml);
+                            return;
                             
-                            BootstrapDialog.confirm({
-                                type: BootstrapDialog.TYPE_PRIMARY,
-                                title: 'Update',
-                                message: poListHtml,
-                                callback: function(toAdd){
-                                    if(toAdd){
+                            // BootstrapDialog.confirm({
+                            //     type: BootstrapDialog.TYPE_PRIMARY,
+                            //     title: 'Update',
+                            //     message: poListHtml,
+                            //     callback: function(toAdd){
+                            //         if(toAdd){
+                            //             console.log(batchNumber);
+                            //             return;
+                            //             // formTableContainer = 'formTable_' + batchNumber;
 
-                                        formTableContainer = 'formTable_'+batchNumber;
+                            //             // qtyReceivedList = document.querySelectorAll('#' + formTableContainer + '.po_qty_received input');
+                            //             // statusList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_status');
+                            //             // rowIds = document.querySelectorAll('#' + formTableContainer + ' .po_qty_row_id');
 
-                                        qtyReceivedList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_received');
-                                        statusList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_status');
-                                        rowIds = document.querySelectorAll('#' + formTableContainer + ' .po_qty_row_id');
-                                        
+                            //             // // console.log(productList,qtyOrderedList,qtyReceivedList,supplierList,statusList);
 
-                                        // console.log(qtyReceivedList,statusList,rowIds);
+                            //             // poListsArrForm = [];
 
-                                        poListsArrForm = [];    
+                            //             // for(i=0;i<qtyReceivedList.length;i++) {
+                            //             //     poListsArrForm.push({
+                            //             //         qtyReceived: qtyReceivedList[i].value,
+                            //             //         status: statusList[i].value,
+                            //             //         id: rowIds[i].value
+                            //             //     });
+                            //             // }   
 
-                                        for(i=0;i<qtyReceivedList.length;i++) {
-                                            poListsArrForm.push({
-                                                qtyReceived: qtyReceivedList[i].value,
-                                                status: statusList[i].value,
-                                                id: rowIds[i].value
-                                            });
-                                        }   
-                                        console.log(poListsArrForm);
-                                        return;
-                                        $.ajax({
-                                            method: 'POST',
-                                            data:{
-                                                id:pId,
-                                                table:'products'
-                                            },
-                                            url: 'database/delete.php',
-                                            dataType: 'json',
-                                            success: function(data){
-                                                message = data.success ? 'sd' : 'Ed';
+                            //             // // console.log(poListsArrForm);
+                            //             // // return;
 
-                                                BootstrapDialog.alert({
-                                                    type: data.success? BootstrapDialog.TYPE_SUCCESS : BootstrapDialog.TYPE_DANGER,
-                                                    message : message,
-                                                    callback: function(){
-                                                        if(data.success) location.reload();
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }
-                                }
-                            });
+
+                            //             // $.ajax({
+                            //             //     method: 'POST',
+                            //             //     data:{
+                            //             //         id:pId,
+                            //             //         table:'products'
+                            //             //     },
+                            //             //     url: 'database/delete.php',
+                            //             //     dataType: 'json',
+                            //             //     success: function(data){
+                            //             //         message = data.success ? 'sd' : 'Ed';
+
+                            //             //         BootstrapDialog.alert({
+                            //             //             type: data.success? BootstrapDialog.TYPE_SUCCESS : BootstrapDialog.TYPE_DANGER,
+                            //             //             message : message,
+                            //             //             callback: function(){
+                            //             //                 if(data.success) location.reload();
+                            //             //             }
+                            //             //         });
+                            //             //     }
+                            //             // });
+                            //         }
+                            //     }
+                            // });
                             
                         }
 
@@ -306,3 +291,5 @@ $suppliers = include 'database/show.php';
 </body>
 
 </html>
+
+
