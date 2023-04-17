@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['user'])) header('location: login.php');
+
+    // $user = $_SESSION(['user']); 
+
+    include('database/po_status_pie_graph.php');
+    // var_dump($results);
+    // die;
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,11 +30,65 @@
         <div class="dashboard_content_container" id="dashboard_content_container">
             <?php include('sidebar/apptopbar.php') ?>
             <div class="dashboard_content">
-                <div class="dashboard_content_main"></div>
+                <div class="dashboard_content_main">
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description">
+                        Here is the breakdown of the purchase orders by status.
+                    </p>
+                </figure>
+                </div>
             </div>
         </div>
     </div>
     </div>
+
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script>
+    var graphData = <?= json_encode($results) ?>;
+    // Data retrieved from https://netmarketshare.com
+    Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Purchase Order By Status',
+        align: 'left'
+    },
+    tooltip: {
+        // pointFormat: '{series.name}: <b>{point.percentage}</b>'
+        pointFormatter: function(){
+            var point = this,
+                series = point.series;
+            
+            return `<b>${series.name}</b> : ${point.y}`
+        }
+    },  
+    plotOptions: {
+        pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage}'
+            }
+        }
+    },
+    series: [{
+        name: 'Status',
+        colorByPoint: true,
+        data: graphData
+    }]
+    });
+</script>
 </body>
 
 </html>
