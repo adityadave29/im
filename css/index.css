@@ -1,0 +1,111 @@
+/* .banner {
+    background-color: #252525;
+    background-size: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* left: -3px; */
+    /* top: -12px; */
+
+body{
+    background-color: #252525;    
+}
+  .box {
+    position: absolute;
+    width: 891px;
+    height: 396px;
+    left: 320px;
+    top: 212px;
+  
+    background: rgba(37, 37, 37, 0.56);
+    backdrop-filter: blur(19.5px);
+  }
+  
+  .title h1 {
+    position: absolute;
+    width: 775px;
+    height: 83px;
+    left: 140px;
+    top: 1px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 83px;
+    color: #FFFFFF;
+  
+  }
+  
+  .project h1 {
+    position: absolute;
+    width: 344px;
+    height: 54px;
+    left: 261px;
+    top: 90px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 44.2086px;
+    line-height: 54px;
+    color: #FFFFFF;
+  }
+  
+  button {
+    position: absolute;
+    width: 215px;
+    height: 80px;
+    left: 513px;
+    top: 477px;
+  
+    background: #08FF21;
+    border-radius: 22px;
+    position: absolute;
+    width: 185px;
+    height: 76px;
+    left: 338px;
+    top: 237px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 48px;
+    color: #252525;
+  }
+  
+  button:hover {
+    position: absolute;
+    width: 215px;
+    height: 80px;
+    left: 513px;
+    top: 477px;
+    cursor: pointer;
+    background: #1d6d25;
+    border-radius: 22px;
+    position: absolute;
+    width: 185px;
+    height: 76px;
+    left: 338px;
+    top: 237px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 48px;
+    color: #252525;
+  }
+  
+  .member {
+    position: absolute;
+    width: 268.5px;
+    height: 112.5px;
+    left: 10px;
+    top: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8.3973px;
+    line-height: 23px;
+    text-align: left;
+    color: #FFFFFF;
+  }
+  
