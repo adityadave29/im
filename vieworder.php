@@ -174,7 +174,7 @@ $suppliers = include 'database/show.php';
                                 poListsArr.push({
                                     name: productList[i].innerText,
                                     qtyOrdered: qtyOrderedList[i].innerText,
-                                    qtyReceived: qtyReceivedList[i],
+                                    qtyReceived: qtyReceivedList[i].innerText,
                                     supplier: supplierList[i].innerText,
                                     status: statusList[i].innerText,
                                     id: rowIds[i].value
@@ -201,6 +201,7 @@ $suppliers = include 'database/show.php';
                                                         <th>Product Name</th>\
                                                         <th>Qty Ordered</th>\
                                                         <th>Qty Received</th>\
+                                                        <th>Qty Delivered</th>\
                                                         <th>Supplier</th>\
                                                         <th>Status</th>\
                                                     </tr>\
@@ -213,7 +214,8 @@ $suppliers = include 'database/show.php';
                                     <tr>\
                                         <td class="po_product alignLeft">'+ poList.name+ '</td>\
                                         <td class="po_qty_ordered">'+ poList.qtyOrdered+ '</td>\
-                                        <td class="po_qty_received"><input type="number" value="'+ poList.qtyReceived+ '"/></td>\
+                                        <td class="po_qty_received">'+ poList.qtyReceived+ '</td>\
+                                        <td class="po_qty_delivered"><input type="number" value="0"/></td>\
                                         <td class="po_qty_supplier">'+ poList.supplier+ '</td>\
                                         <td>\
                                             <select class="po_qty_status">\
@@ -250,7 +252,8 @@ $suppliers = include 'database/show.php';
 
                                         formTableContainer = 'formTable_'+batchNumber;
 
-                                        qtyReceivedList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_received input');
+                                        qtyReceivedList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_received');
+                                        qtyDeliveredList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_delivered input');
                                         statusList = document.querySelectorAll('#' + formTableContainer + ' .po_qty_status');
                                         rowIds = document.querySelectorAll('#' + formTableContainer + ' .po_qty_row_id');
                                         qtyOrdered = document.querySelectorAll('#' + formTableContainer + ' .po_qty_ordered');
@@ -260,9 +263,10 @@ $suppliers = include 'database/show.php';
 
                                         poListsArrForm = [];    
 
-                                        for(i=0;i<qtyReceivedList.length;i++) {
+                                        for(i=0;i<qtyDeliveredList.length;i++) {
                                             poListsArrForm.push({
-                                                qtyReceived: qtyReceivedList[i].value,
+                                                qtyReceive:qtyReceivedList[i].innerText,
+                                                qtyDelivered: qtyDeliveredList[i].value,
                                                 status: statusList[i].value,
                                                 id: rowIds[i].value,
                                                 qtyOrdered: qtyOrdered[i].innerText
