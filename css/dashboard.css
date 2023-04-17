@@ -232,3 +232,12 @@ a.subMenuLink i {
 input[type="number"] {
   min-width: 50px;
 }
+
+div.col50{
+  width: 50%;
+}
+
+div.dashboard_content_main{
+  display: flex;
+  flex-direction: row;
+}
