@@ -15,6 +15,7 @@
                 $status = $po['status'];
                 $row_id = $po['id'];
                 $qty_ordered = (int) $po['qtyOrdered'];
+                $product_id = (int) $po['pid'];
 
                 $updated_qty_received = $cur_qty_received + $delivered;
                 $qty_remaining = $qty_ordered - $updated_qty_received;
@@ -42,6 +43,24 @@
                 
                 $stmt = $conn->prepare($sql);
                 $stmt->execute($delivery_history);
+
+
+                $stmt = $conn->prepare("SELECT products.stock FROM products WHERE id=$product_id");
+
+                $stmt->execute();
+                $product = $stmt->fetch();
+
+                $cur_stock = (int) $product['stock'];
+
+
+                $updated_stock = $cur_stock + $delivered;
+                $sql = "UPDATE products SET stock=? WHERE id=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$updated_stock, $product_id]);
+
+
+
+
             }
             
 
