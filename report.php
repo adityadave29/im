@@ -31,31 +31,27 @@
                         <div class = "reportType">
                           <p>Export products</p>
                           <div class = "alignRight">
-                            <a class="reportExportBtn" href = ""> Excel</a>
-                            <a class="reportExportBtn" href = "">PDF</a>
+                            <a class="reportExportBtn" href = "database/report_csv.php?report=product"> Excel</a>
                           </div>
                         </div>
                         <div class = "reportType">
-                          <p>Export products</p>
+                          <p>Export Suppliers</p>
                           <div class = "alignRight">
-                            <a class="reportExportBtn" href = ""> Excel</a>
-                            <a class="reportExportBtn" href = "">PDF</a>
+                            <a class="reportExportBtn" href = "database/report_csv.php?report=supplier"> Excel</a>
                           </div>
                         </div>    
                       </div>
                       <div class ="box">
                         <div class = "reportType">
-                          <p>Export products</p>
+                          <p>Export Deliveries</p>
                           <div class = "alignRight">
-                            <a class="reportExportBtn" href = ""> Excel</a>
-                            <a class="reportExportBtn" href = "">PDF</a>
+                            <a class="reportExportBtn" href = "database/report_csv.php?report=products"> Excel</a>
                           </div>
                         </div>
                         <div class = "reportType">
-                          <p>Export products</p>
+                          <p>Export Purchase Orders</p>
                           <div class = "alignRight">
-                            <a class="reportExportBtn" href = ""> Excel</a>
-                            <a class="reportExportBtn" href = "">PDF</a>
+                            <a class="reportExportBtn" href = "database/report_csv.php?report=products"> Excel</a>
                           </div>
                         </div>    
                       </div>
