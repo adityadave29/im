@@ -75,6 +75,7 @@ $suppliers = include 'database/show.php';
                                                     <th>Status</th>
                                                     <th>Ordered By</th>
                                                     <th>Created Date</th>
+                                                    <th>Delivery History</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -93,6 +94,11 @@ $suppliers = include 'database/show.php';
                                                         <?= $batch_po['created_at'] ?>
                                                         <input type="hidden" class="po_qty_row_id" value="<?= $batch_po['id'] ?>">
                                                         <input type="hidden" class="po_qty_productid" value="<?= $batch_po['product'] ?>">
+                                                    </td>
+                                                    <td>
+                                                        <button class="appbtn appDeliveryHistory" data-id="<?= $batch_po['id'] ?>">
+                                                            Deliveries
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -303,6 +309,55 @@ $suppliers = include 'database/show.php';
                                 }
                             });
                             
+                        }
+
+                        if(classList.contains('appDeliveryHistory')){
+                            // alert('hi');
+                            let id = targetElement.dataset.id;
+                            
+                            $.get('database/viewdeliveryhistory.php',{id:id},function(data){
+                                if(data.length){
+
+                                    rows = '';
+                                    data.forEach((row,id) => {
+                                        receivedDate = new Date(row['date_received']);
+                                        rows+='\
+                                            <tr>\
+                                                <td>'+(id+1)+'</td>\
+                                                <td>'+ receivedDate.toUTCString() + ' ' + receivedDate.getUTCHours() + ':' + receivedDate.getUTCMinutes()+'</td>\
+                                                <td>'+row['qty_received']+'</td>\
+                                            </tr>\
+                                        ';  
+                                    });
+
+                                    deliveryHistoryHtml = '<table class="deliveryHistoryTable">\
+                                    <thead>\
+                                        <tr>\
+                                            <th>#</th>\
+                                            <th>Date Received</th>\
+                                            <th>Quantity Received</th>\
+                                        </tr>\
+                                        </thead>\
+                                        <tbody>\
+                                            '+rows+'\
+                                        </tbody>\
+                                    </table>\
+                                    ';
+
+                                    BootstrapDialog.show({
+                                        title:'<strong>Delivery Histories</strong>',
+                                        type: BootstrapDialog.TYPE_PRIMARY,
+                                        message: deliveryHistoryHtml
+                                    }); 
+                                }
+                                else{
+                                    BootstrapDialog.show({
+                                        title:'<strong>No Delivery Histories</strong>',
+                                        type: BootstrapDialog.TYPE_INFO,
+                                        message: "NO HISTORY FOUND"
+                                    }); 
+                                }
+                            },'json');
                         }
 
                     });

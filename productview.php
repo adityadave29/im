@@ -50,6 +50,7 @@
                                                 <th>#</th>
                                                 <th>Image</th>
                                                 <th>Product Name</th>
+                                                <th>Stock</th>
                                                 <th>Description</th>
                                                 <th>Suppliers</th>
                                                 <th>Created By</th>
@@ -65,6 +66,7 @@
                                                 <td class="firstName"><img class="productImages"
                                                         src="uploads/products/<?= $product['img']?>"></td>
                                                 <td class="lastName"><?= $product['product_name'] ?></td>
+                                                <td class="lastName"><?= number_format($product['stock'])?></td>
                                                 <td class="email"><?= $product['description'] ?></td>
                                                 <td class="email">
                                                     <?php

@@ -266,3 +266,22 @@ div .orderProductRow {
   text-align: left;
 }
 
+.appDeliveryHistory{
+  border: 1px solid #FF5722;
+  background:none;
+}
+
+.appDeliveryHistory:hover{
+  background: #FF5722;
+  color: #fff;
+}
+
+.deliveryHistoryTable th{
+  font-size: 18px;
+}
+
+.deliveryHistoryTable td{
+  font-size: 15px;
+  text-align: center;
+  padding: 17px;
+}
