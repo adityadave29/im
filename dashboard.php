@@ -6,6 +6,7 @@
 
     include('database/po_status_pie_graph.php');
     include('database/supplier_product_bar_graph.php');
+    include('database/delivey_history.php');
     // var_dump($results);
     // die;
 
@@ -48,7 +49,9 @@
                             </p>
                         </figure>
                     </div>
-                
+                </div>  
+                <div id="deliveryHistory">
+                    
                 </div>
             </div>
         </div>
@@ -147,6 +150,69 @@
             data: barGraphData
         }]
         });
+
+    var lineCategories = <?= json_encode($line_categories) ?>;
+    var lineData = <?= json_encode($line_data) ?>;
+    
+    Highcharts.chart('deliveryHistory', {
+
+        chart:{
+            type:'spline'
+        },
+
+        title: {
+        text: 'Delivery History',
+        align: 'left'
+        },
+
+
+        yAxis: {
+        title: {
+            text: 'Product Delivered'
+        }
+        },
+
+        xAxis: {
+            categories: lineCategories
+        },
+
+        legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+        },
+
+        plotOptions: {
+        series: {
+            label: {
+            connectorAllowed: false
+            },
+            pointStart: 2010
+        }
+        },
+
+        series: [{
+        name: 'Product Delivered',
+        data: lineData
+        }],  
+
+        responsive: {
+        rules: [{
+            condition: {
+            maxWidth: 500
+            },
+            chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+            }
+        }]
+        }
+
+        });
+
 </script>
 </body>
 

@@ -170,7 +170,7 @@ a#logoutbtn {
 
 div.dashboard_content_main {
   background: #fff;
-  min-height: 900px;
+  /* min-height: 900px; */
   height: 80%;
   margin-top: 13px;
 }
