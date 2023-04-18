@@ -233,11 +233,55 @@ input[type="number"] {
   min-width: 50px;
 }
 
-div.col50{
+div.col50 {
   width: 50%;
 }
 
-div.dashboard_content_main{
+div.dashboard_content_main {
   display: flex;
   flex-direction: row;
+}
+
+.reportsContainer .box {
+  display: flex;
+  justify-content: flex-start;
+
+  padding: 10px 31px;
+}
+
+.reportType {
+  border: 1px solid #c2c6c2;
+  padding: 10px 24px;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 14px;
+  width: 100%;
+  margin-left: 21px;
+}
+
+.reportType p {
+  font-size: 20px;
+  font-weight: 200;
+  margin-bottom: 10px;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.reportExportBtn {
+  padding: 4px 15px;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: #0daaff;
+  color: white;
+  margin-left: 13px;
+  font-size: 11px;
+}
+
+.reportExportBtn:hover {
+  border: lpx solid #fff;
+  background: #0d73a9;
+  color: #fff;
 }

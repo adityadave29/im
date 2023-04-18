@@ -10,6 +10,9 @@
                 <a href="./dashboard.php"><i class="fa fa-dashboard"> Dashboard</i></a>
             </li>
             <li class="liMainMenu">
+                <a href="./report.php"><i class="fa fa-notes"> Reports</i></a>
+            </li>
+            <li class="liMainMenu">
                 <a href=""><i class="fa fa-tag"> Product Management</i></a>
                 <ul class="subMenus">
                     <li><a class="subMenuLink" href="./productadd.php"><i class="fa fa-circle-o"></i> Add Product</a></li>
